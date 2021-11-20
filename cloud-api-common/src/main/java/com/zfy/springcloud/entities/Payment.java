@@ -11,7 +11,6 @@ import java.io.Serializable;
  * @description: 订单实体类
  **/
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
