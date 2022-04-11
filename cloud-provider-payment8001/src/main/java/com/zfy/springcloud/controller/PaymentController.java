@@ -9,6 +9,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author zfyy04
@@ -52,6 +53,17 @@ public class PaymentController {
             return new CommonResult(500, "ServerPort:"+port+",查询失败");
         }
         return new CommonResult(200, "ServerPort:"+port+",查询成功", payment);
+
+    }
+
+    @GetMapping(value = "/payment/all")
+    public CommonResult getAllPayment(){
+        List<Payment> allPayment = paymentService.getAllPayment();
+        log.info("访问端口"+port+"查询结果>>>>>>"+allPayment);
+        if(allPayment==null){
+            return new CommonResult(500, "ServerPort:"+port+",查询失败");
+        }
+        return new CommonResult(200, "ServerPort:"+port+",查询成功", allPayment);
 
     }
 

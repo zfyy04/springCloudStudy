@@ -17,4 +17,10 @@
         select * from payment where id = #{id}
     </select>
 
+    <select id="getAllPayment" resultMap="BaseResultMap">
+        select * from payment
+    </select>
+
+
+
 </mapper>

@@ -4,6 +4,8 @@ import com.zfy.springcloud.entities.Payment;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author zfyy04
  * @date 2021/2/6 2:32 PM
@@ -14,4 +16,6 @@ public interface PaymentDao {
     int create(Payment payment);
 
     Payment getPaymentById(@Param("id") Long id);
+
+    List<Payment> getAllPayment();
 }
