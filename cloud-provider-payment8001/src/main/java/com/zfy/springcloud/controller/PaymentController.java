@@ -9,6 +9,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -70,5 +71,10 @@ public class PaymentController {
     @GetMapping(value="/payment/discovery")
     private Object getDiscoveryClient(){
         return this.discoveryClient;
+    }
+
+    @GetMapping(value = "/helloFeign")
+    public String helloFeign(){
+        return "helloFeign" + new Date();
     }
 }

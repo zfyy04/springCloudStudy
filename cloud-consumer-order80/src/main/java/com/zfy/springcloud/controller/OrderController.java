@@ -1,8 +1,10 @@
 package com.zfy.springcloud.controller;
 
+import com.zfy.springcloud.api.OpenFeignAPI;
 import com.zfy.springcloud.entities.CommonResult;
 import com.zfy.springcloud.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,6 +18,9 @@ import javax.annotation.Resource;
 @RestController
 @Slf4j
 public class OrderController {
+
+    @Autowired
+    private OpenFeignAPI openFeignAPI;
 
     @Resource
     private RestTemplate restTemplate;
@@ -32,5 +37,15 @@ public class OrderController {
     @GetMapping(value = "/consumer/payment/get/{id}")
     public CommonResult getPamentInfoById(@PathVariable("id") Long id){
         return restTemplate.getForObject(PAYMENT_URL+"payment/get/"+id, CommonResult.class);
+    }
+
+    @GetMapping(value = "/consumer/helloFeign")
+    public String helloFeign(){
+        return openFeignAPI.helloFeign();
+    }
+
+    @GetMapping(value = "/consumer/ping")
+    public String ping(){
+        return String.valueOf(System.currentTimeMillis());
     }
 }
