@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author zfyy04
@@ -74,7 +75,22 @@ public class PaymentController {
     }
 
     @GetMapping(value = "/helloFeign")
-    public String helloFeign(){
-        return "helloFeign" + new Date();
+    public String helloFeign(@RequestHeader("x-custHeader") String xCustHeader){
+        try {
+            TimeUnit.SECONDS.sleep(3);//模拟超时
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "helloFeign" + new Date() + ",x-custHeader="+xCustHeader;
+    }
+
+    @GetMapping(value = "/helloFeignTimeOut")
+    public String helloFeignTimeOut(@RequestHeader("x-custHeader") String xCustHeader){
+        try {
+            TimeUnit.SECONDS.sleep(3);//模拟超时
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "helloFeignTimeOut" + new Date() + ",x-custHeader="+xCustHeader;
     }
 }

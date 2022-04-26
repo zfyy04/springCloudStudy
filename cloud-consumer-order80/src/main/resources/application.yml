@@ -11,3 +11,29 @@ eureka:
     service-url:
        defaultZone: http://localhost:7001/eureka/ #单机版
 #      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/ #集群版
+zfy:
+  custHeader: zfy
+
+# 使用连接池
+feign:
+  httpclient:
+    # 让feign使用apache httpclient作请求
+    enabled: false
+    # feign的最大连接数,我这里理解的连接池中的最大可用连接数量
+    max-connections: 200
+    # feign单个路径的最大连接数,我这里理解的是一个请求url上的最大并发数
+    max-connections-per-route: 50
+  client:
+    config:
+      cloud-gateway-gateway: # 具体服务名称
+        connectTimeout: 2000 #会覆盖掉ribbon的超时时间配置
+        readTimeout: 2000 #会覆盖掉ribbon的超时时间配置
+        loggerLevel: full
+        retryer: com.zfy.springcloud.config.feign.MyRetryer # 重试
+  okhttp:
+    enabled: true # 开启okhttp的客户端，否则默认使用httpClient连接池
+    max-connections: 200 # 默认值
+    max-connections-per-route: 50 # 默认值
+logging:
+  level:
+    com.zfy.springcloud.api.OpenFeignAPI: debug
