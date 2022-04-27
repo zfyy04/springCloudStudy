@@ -3,6 +3,7 @@ package com.zfy.springcloud.controller;
 import com.zfy.springcloud.entities.CommonResult;
 import com.zfy.springcloud.entities.Payment;
 import com.zfy.springcloud.service.PaymentService;
+import com.zfy.springcloud.versioncontroll.ApiVersion;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -92,5 +93,18 @@ public class PaymentController {
             e.printStackTrace();
         }
         return "helloFeignTimeOut" + new Date() + ",x-custHeader="+xCustHeader;
+    }
+
+
+    @ApiVersion("1.0.0")
+    @GetMapping(value = "/{v}/test")
+    public String testv1() {
+        return "v1";
+    }
+
+    @ApiVersion("2.0.0")
+    @GetMapping(value = "/{v}/test")
+    public String testv2() {
+        return "v2";
     }
 }
