@@ -25,27 +25,27 @@ public class OrderController {
     @Resource
     private RestTemplate restTemplate;
 
-//    public static final String PAYMENT_URL = "http://localhost:8001/";
+    //    public static final String PAYMENT_URL = "http://localhost:8001/";
     public static final String PAYMENT_URL = "http://CLOUD-PROVIDER-PAYMENT/";
 
     @PostMapping(value = "/consumer/payment/create")
-    public CommonResult<Payment> create(@RequestBody Payment payment){
-        log.info("order:传入参数"+payment);
-        return restTemplate.postForObject(PAYMENT_URL+"payment/create", payment, CommonResult.class);
+    public CommonResult<Payment> create(@RequestBody Payment payment) {
+        log.info("order:传入参数" + payment);
+        return restTemplate.postForObject(PAYMENT_URL + "payment/create", payment, CommonResult.class);
     }
 
     @GetMapping(value = "/consumer/payment/get/{id}")
-    public CommonResult getPamentInfoById(@PathVariable("id") Long id){
-        return restTemplate.getForObject(PAYMENT_URL+"payment/get/"+id, CommonResult.class);
+    public CommonResult getPamentInfoById(@PathVariable("id") Long id) {
+        return restTemplate.getForObject(PAYMENT_URL + "payment/get/" + id, CommonResult.class);
     }
 
     @GetMapping(value = "/consumer/helloFeign")
-    public String helloFeign(){
+    public String helloFeign() {
         return openFeignAPI.helloFeign();
     }
 
     @GetMapping(value = "/consumer/ping")
-    public String ping(){
+    public String ping() {
         return String.valueOf(System.currentTimeMillis());
     }
 }
