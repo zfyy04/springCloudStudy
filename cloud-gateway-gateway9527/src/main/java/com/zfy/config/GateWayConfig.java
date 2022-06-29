@@ -25,6 +25,7 @@ public class GateWayConfig {
 
     /**
      * 手工定义路由规则
+     *
      * @param redisConnectionFactory
      * @return
      */
@@ -33,7 +34,6 @@ public class GateWayConfig {
 //        return builder.routes().route("guoji", r -> r.path("/guoji").uri("https://news.baidu.com/"))
 //                .route("payment", r -> r.path("/payment/get/**").uri("lb://CLOUD-PROVIDER-PAYMENT")).build();
 //    }
-
     @Bean(name = "redisTemplate")
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();

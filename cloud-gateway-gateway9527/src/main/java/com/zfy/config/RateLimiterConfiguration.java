@@ -7,6 +7,7 @@ import reactor.core.publisher.Mono;
 
 /**
  * 限流
+ *
  * @author zfyy04
  * @date 2022/3/2 9:24 PM
  */
@@ -15,8 +16,8 @@ import reactor.core.publisher.Mono;
 public class RateLimiterConfiguration {
 
 
-    @Bean(value="ipKeyResolver")
-    public KeyResolver ipResolver(){
+    @Bean(value = "ipKeyResolver")
+    public KeyResolver ipResolver() {
         return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getAddress().getHostAddress());
     }
 }

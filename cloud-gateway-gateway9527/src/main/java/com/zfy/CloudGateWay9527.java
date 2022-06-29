@@ -24,17 +24,17 @@ public class CloudGateWay9527 {
 
 
     public static void main(String[] args) {
-        SpringApplication.run(CloudGateWay9527.class,args);
+        SpringApplication.run(CloudGateWay9527.class, args);
     }
 
     @GetMapping("/redis/set")
-    public String setVal(@Param("name")String name) {
+    public String setVal(@Param("name") String name) {
         redisTemplate.opsForValue().set("name", name);
         return "OK";
     }
 
     @GetMapping("/redis/get")
-    public Object getVal(@Param("key")String key) {
+    public Object getVal(@Param("key") String key) {
         return redisTemplate.opsForValue().get(key);
     }
 //

@@ -31,34 +31,35 @@ public class PaymentController {
      */
     @Resource
     private DiscoveryClient discoveryClient;
+
     /**
      * @param payment
      * @return
      */
     @PostMapping(value = "/payment/create")
-    public CommonResult create(@RequestBody Payment payment){
+    public CommonResult create(@RequestBody Payment payment) {
         int result = paymentService.create(payment);
-        log.info("访问端口"+serverPort+"插入"+payment+"结果>>>>>>>"+result);
-        if(result>0){
-            return new CommonResult(200,"ServerPort:"+serverPort+",插入成功",result);
-        }else{
-            return new CommonResult(500,"ServerPort:"+serverPort+",插入失败",result);
+        log.info("访问端口" + serverPort + "插入" + payment + "结果>>>>>>>" + result);
+        if (result > 0) {
+            return new CommonResult(200, "ServerPort:" + serverPort + ",插入成功", result);
+        } else {
+            return new CommonResult(500, "ServerPort:" + serverPort + ",插入失败", result);
         }
     }
 
     @GetMapping(value = "/payment/get/{id}")
-    public CommonResult getPaymentById(@PathVariable("id") Long id){
+    public CommonResult getPaymentById(@PathVariable("id") Long id) {
         Payment payment = paymentService.getPaymentById(id);
-        log.info("访问端口"+serverPort+"查询结果>>>>>>"+payment);
-        if(payment==null){
-            return new CommonResult(500, "ServerPort:"+serverPort+",查询失败");
+        log.info("访问端口" + serverPort + "查询结果>>>>>>" + payment);
+        if (payment == null) {
+            return new CommonResult(500, "ServerPort:" + serverPort + ",查询失败");
         }
-        return new CommonResult(200, "ServerPort:"+serverPort+",查询成功", payment);
+        return new CommonResult(200, "ServerPort:" + serverPort + ",查询成功", payment);
 
     }
 
-    @GetMapping(value="/payment/discovery")
-    private Object getDiscoveryClient(){
+    @GetMapping(value = "/payment/discovery")
+    private Object getDiscoveryClient() {
         return this.discoveryClient;
     }
 }

@@ -19,11 +19,11 @@ public class PaymentServiceImpl implements PaymentService {
     @Resource
     private PaymentDao paymentDao;
 
-//    @Transactional
+    //    @Transactional
     @Override
     public int create(Payment payment) {
         int i = paymentDao.create(payment);
-        int s = i/0;
+        int s = i / 0;
         return i;
     }
 

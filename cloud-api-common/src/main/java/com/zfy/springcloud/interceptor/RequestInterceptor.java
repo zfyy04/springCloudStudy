@@ -19,7 +19,7 @@ public class RequestInterceptor implements feign.RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
-        requestTemplate.header("x-appName",appName);
-        requestTemplate.header("x-custHeader",customerHeader);
+        requestTemplate.header("x-appName", appName);
+        requestTemplate.header("x-custHeader", customerHeader);
     }
 }

@@ -23,7 +23,7 @@ public class MyLogFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.info("**************"+new Date().toString());
+        log.info("**************" + new Date().toString());
 //        ServerHttpRequest request = exchange.getRequest();
 //        String name = request.getQueryParams().getFirst("name");
 //        if(name==null){

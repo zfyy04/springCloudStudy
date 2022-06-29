@@ -15,7 +15,7 @@ public class PaymentMain8002 {
         ConfigurableApplicationContext run = SpringApplication.run(PaymentMain8002.class, args);
         //获取加载的bean
         String[] beanDefinitionNames = run.getBeanDefinitionNames();
-        for (String beanName:beanDefinitionNames){
+        for (String beanName : beanDefinitionNames) {
 //            System.out.println("==============>"+beanName);
         }
     }

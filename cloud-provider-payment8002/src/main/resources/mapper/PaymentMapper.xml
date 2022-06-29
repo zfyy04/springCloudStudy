@@ -10,7 +10,7 @@
 
     <!--useGeneratedKeys 插入成功失败返回信息，payment映射的是实体类 keyProperty为主键-->
     <insert id="create" parameterType="payment" useGeneratedKeys="true" keyProperty="id">
-            insert into payment(serial) values (#{serial})
+        insert into payment(serial) values (#{serial})
     </insert>
 
     <select id="getPaymentById" parameterType="Long" resultMap="BaseResultMap">

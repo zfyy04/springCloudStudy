@@ -29,6 +29,7 @@ public class CommonResult<T> {
 
     /**
      * 新增的构造方法3
+     *
      * @param code
      * @param message
      */

@@ -12,6 +12,8 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 public class CustomWebMvcConfiguration extends WebMvcConfigurationSupport {
     @Override
     public RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
-        return new ApiVersionRequestMappingHandlerMapping();
+        RequestMappingHandlerMapping handlerMapping = new ApiVersionRequestMappingHandlerMapping();
+//        handlerMapping.setOrder(0);
+        return handlerMapping;
     }
 }
