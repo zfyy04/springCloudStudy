@@ -2,6 +2,7 @@ package com.paic;
 
 import com.alibaba.csp.sentinel.datasource.ReadableDataSource;
 import com.alibaba.csp.sentinel.datasource.WritableDataSource;
+import com.alibaba.fastjson.JSON;
 import com.paic.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,8 +10,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
 
 /**
  * @author zfyy04
@@ -36,6 +39,16 @@ public class NacosProviderMain8003 {
     private TokenUtil tokenUtil;
 
 
+    @PostMapping(value = "/pingpost")
+    public String pingpost(@RequestBody Map user) {
+        return System.currentTimeMillis() + "=>hello post " + name + ",user="+JSON.toJSONString(user);
+    }
+
+    @PostMapping(value = "/pingposturl")
+    public String pingpostUrlEncode(@RequestParam Map user) {
+        return System.currentTimeMillis() + "=>hello post " + name + ",user="+JSON.toJSONString(user);
+    }
+
     @GetMapping(value = "/ping")
     public String ping() {
         return System.currentTimeMillis() + "=>hello " + name;
@@ -49,6 +62,12 @@ public class NacosProviderMain8003 {
     @GetMapping(value = "/getUser")
     public String getUser(String token) {
         return "=>getUser sucess!userName is: " + tokenUtil.getUserNameByToken(token);
+    }
+
+    @PostMapping("/upload")
+    public String upload(@RequestParam("file") MultipartFile file){
+        return "upload Success!fileName:"+file.getOriginalFilename();
+
     }
 
 }
